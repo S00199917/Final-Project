@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { RickAndMortyAPIService } from "./services/rick-and-morty-api.service";
-import { CharacterResponse, LocationResponse, EpisodeResponse } from "./RickAndMortyResponse";
+import { CharacterResponse } from "./RickAndMortyResponse";
 
 @Component({
     selector: 'app-root',
@@ -10,20 +10,24 @@ import { CharacterResponse, LocationResponse, EpisodeResponse } from "./RickAndM
 })
 export class AppComponent {
     characterData: CharacterResponse;
-    locationData: LocationResponse;
-    episodeData: EpisodeResponse;
     errorMessage: any;
 
     constructor(private _rickAndMortyService: RickAndMortyAPIService) { }
 
     getCharacterDetails(characterName: string): boolean {
         this._rickAndMortyService.getCharacterData(characterName).subscribe(
-            characterData => {
-                this.characterData = characterData;
-                console.log("Character Name:" + this.characterData);
+            res => {
+                this.characterData = res;
+                console.log("Info" + this.characterData.info.count);
+                console.log("Character Name:" + this.characterData.results[0].name);
+                console.log("Character Name:" + this.characterData.results[1].name);
             },
             error => this.errorMessage = <any>error
         );
         return false;
+    }
+
+    Count(): number {
+        return 3;
     }
 }
