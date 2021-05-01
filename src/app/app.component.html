@@ -7,7 +7,7 @@
         <button (click)="getCharacterDetails(charactername.value)" type="submit" class="btn btn-primary">Get Character Details</button> 
     </form>
 
-    <h1>{{characterData.info.count}}</h1>
+    <h1>There are {{characterData.info.count}} characters with that name</h1>
 
     <h1 *ngFor="let character of characterData.results">{{character.name}}</h1>
 
