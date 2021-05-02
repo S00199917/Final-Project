@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { RickAndMortyAPIService } from "./services/rick-and-morty-api.service";
-import { CharacterResponse } from "./RickAndMortyResponse";
+import {CharacterResponse} from './RickAndMortyResponse';
+import { from } from 'rxjs';
 
 @Component({
     selector: 'app-root',
@@ -18,7 +19,7 @@ export class AppComponent {
         this._rickAndMortyService.getCharacterData(characterName).subscribe(
             res => {
                 this.characterData = res;
-                console.log("Info" + this.characterData.info.count);
+                console.log("Info: " + this.characterData.info.count);
                 console.log("Character Name:" + this.characterData.results[0].name);
                 console.log("Character Name:" + this.characterData.results[1].name);
             },

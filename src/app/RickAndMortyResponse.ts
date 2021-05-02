@@ -15,4 +15,14 @@ interface CharacterResult{
     species: string;
     gender: string;
     image: string;
+    origin: Origin;
+    location: Location;
+}
+
+interface Origin{
+    name: string;
+}
+
+interface Location{
+    name:string;
 }
