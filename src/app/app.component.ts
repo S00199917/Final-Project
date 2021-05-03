@@ -1,19 +1,27 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RickAndMortyAPIService } from "./services/rick-and-morty-api.service";
-import {CharacterResponse} from './RickAndMortyResponse';
+import { CharacterResponse } from './RickAndMortyResponse';
 import { from } from 'rxjs';
+import { FavoriteServiceService } from "./services/favorite-service.service";
+import { IFavorite, Favorite } from "./FavoriteInterface";
+import { createSpreadAssignment } from 'typescript';
 
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.css'],
-    providers: [RickAndMortyAPIService]
+    providers: [
+        RickAndMortyAPIService,
+        FavoriteServiceService
+    ]
 })
 export class AppComponent {
+    show: boolean;
     characterData: CharacterResponse;
     errorMessage: any;
+    favCharacterData: IFavorite[];
 
-    constructor(private _rickAndMortyService: RickAndMortyAPIService) { }
+    constructor(private _rickAndMortyService: RickAndMortyAPIService, private _favoriteService: FavoriteServiceService) { }
 
     getCharacterDetails(characterName: string): boolean {
         this._rickAndMortyService.getCharacterData(characterName).subscribe(
@@ -28,7 +36,9 @@ export class AppComponent {
         return false;
     }
 
-    Count(): number {
-        return 3;
+    addTheCharacter(gender: string, image: string, location: string, name: string, origin: string, species: string, status: string) {
+        let tempFav: IFavorite;
+        tempFav = new Favorite(gender, image, location, name, origin, species, status);
+        this._favoriteService.addCharacterData(tempFav);
     }
 }

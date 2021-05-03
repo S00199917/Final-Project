@@ -1,0 +1,16 @@
+<div class="card text-white bg-dark border-dark mb-3" style="width: 18rem;">
+    <div class="img-wrapper">
+        <img class="card-img-top" src="{{characterData.image}}" alt="{{characterData.name}}.jpg" class="fader hover">
+    </div>
+
+    <div class="card-body">
+        <h5 class="card-title">{{characterData.name}}</h5>
+        <p class="card-text">Status: {{characterData.status}}</p>
+    </div>
+    <ul class="list-group list-group-flush" class="fader">
+        <li class="list-group-item bg-dark">Species: {{characterData.species}}</li>
+        <li class="list-group-item bg-dark">Gender: {{characterData.gender}}</li>
+        <li class="list-group-item bg-dark">Origin: {{characterData.origin}}</li>
+        <li class="list-group-item bg-dark">Current Location:<br>{{characterData.location}}</li>
+    </ul>
+</div>

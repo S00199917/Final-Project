@@ -5,30 +5,44 @@
             <input type="text" name="character-name" class="form-control" #charactername
                 placeholder="Enter Character Name" value='rick'>
         </div>
-        <button (click)="getCharacterDetails(charactername.value)" type="submit" class="btn btn-primary">Get Character
-            Details</button>
+        <button (click)="getCharacterDetails(charactername.value)" type="submit" class="btn btn-primary">Get Character Details</button>
     </form>
+    
+    <table class="table">
+        <thead>
+            <th scope="col">Characters</th>
+            <th scope="col">Favorites</th>
+        </thead>
+        <tbody>
+            <th>
+                <div *ngFor="let character of characterData.results">
+                    <div class="card text-white bg-dark border-dark mb-3" style="width: 18rem;">
+                        <div class="img-wrapper">
+                            <img src="{{character.image}}" class="card-img-top" alt="{{character.name}}.png" class="fader hover">
+                        </div>
+                
+                        <div class="card-body">
+                            <h5 class="card-title" class="fader">{{character.name}}</h5>
+                
+                            <p class="card-text" class="fader">Status: {{character.status}}</p>
+                        </div>
+                        <ul class="list-group list-group-flush" class="fader">
+                            <li class="list-group-item bg-dark">Species: {{character.species}}</li>
+                            <li class="list-group-item bg-dark">Gender: {{character.gender}}</li>
+                            <li class="list-group-item bg-dark">Origin: {{character.origin.name}}</li>
+                            <li class="list-group-item bg-dark">Current Location:<br>{{character.location.name}}</li>
+                        </ul>
+                        <div class="card-body" class="fader" id="shakey">
+                            <button class="btn-primary"
+                                (click)="addTheCharacter(character.gender, character.image, character.location.name, character.name, character.origin.name, character.species, character.status)">Favorite</button>
+                        </div>
+                    </div>
+                </div>
+            </th>
 
-    <div *ngFor="let character of characterData.results">
-        <div class="card text-white bg-dark border-dark mb-3" style="width: 18rem;">
-            <div class="img-wrapper">
-                <img src="{{character.image}}" class="card-img-top" alt="{{character.name}}.png" class="fader hover">
-            </div>
-
-            <div class="card-body">
-                <h5 class="card-title" class="fader">{{character.name}}</h5>
-
-                <p class="card-text" class="fader">Status: {{character.status}}</p>
-            </div>
-            <ul class="list-group list-group-flush" class="fader">
-                <li class="list-group-item bg-dark">Species: {{character.species}}</li>
-                <li class="list-group-item bg-dark">Gender: {{character.gender}}</li>
-                <li class="list-group-item bg-dark">Origin: {{character.origin.name}}</li>
-                <li class="list-group-item bg-dark">Current Location:<br>{{character.location.name}}</li>
-            </ul>
-            <div class="card-body" class="fader" id="shakey">
-                <button class="btn-primary">Favorite</button>
-            </div>
-        </div>
-    </div>
+            <th>
+                <app-favorite-characters-list></app-favorite-characters-list>
+            </th>
+        </tbody>
+    </table>
 </div>
