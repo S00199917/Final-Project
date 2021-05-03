@@ -1,7 +1,3 @@
-@keyframes fading{
-    from {opacity: 0;}
-    to {opacity: 1;}
-}
 
 #shakey{
     transform-origin: 36px 15px;

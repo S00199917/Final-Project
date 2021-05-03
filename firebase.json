@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "dist/RickAndMortyAPI",
+    "public": "dist/Final-Project",
     "ignore": [
       "firebase.json",
       "**/.*",
